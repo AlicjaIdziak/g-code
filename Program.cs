@@ -13,26 +13,39 @@ namespace _3dprinter_gcode
             {
                 //x/y unit = 10 um
                 //z unit = 50 um
-                Console.WriteLine("Your X Value:");
-                decimal x = decimal.Parse(Console.ReadLine());
-                Console.WriteLine("Your Y Value:");
-                decimal y = decimal.Parse(Console.ReadLine());
-                Console.WriteLine("Your Z Value:");
-                decimal z = decimal.Parse(Console.ReadLine());
-                Console.WriteLine("Your G Value:");
-                int g = int.Parse(Console.ReadLine());
-                decimal e = 850 / 100;
-                decimal k = 0;
+                var listOfInstructions = new List<string>();
+                var listOfValues = new List<decimal>();
+                listOfInstructions.Add("Your X Value:");
+                listOfInstructions.Add("Your Y Value:");
+                listOfInstructions.Add("Your Z Value:");
+                listOfInstructions.Add("Your G Value:");
+
+                //var instructions = listOfInstructions[4].Split("",).ToList();
+                foreach(var command in listOfInstructions)
+                {
+                    Console.WriteLine(command);
+                    listOfValues.Add(decimal.Parse(Console.ReadLine()));
+                }
+
+                decimal valueX = listOfValues[0];
+                decimal valueY = listOfValues[1];
+                decimal valueZ = listOfValues[2];
+                decimal valueG = listOfValues[3];
+
+
+                decimal extrudeStepsMm = 850 / 100;
+                decimal valueToX = 0;
+
                 if (g == 1)
                 {
 
-                    for (decimal i = 0; i < z; i += 0.005m)
+                    for (decimal valueToZ = 0; valueToZ < valueZ; valueToZ += 0.005m)
                     {
-                        for (decimal j = 0; j < y; j += 0.001m)
+                        for (decimal valueToY = 0; valueToY < valueY; valueToY += 0.001m)
                         {
-                            while (k < x)
+                            while (valueToX < valueX)
                             {
-                                k += 0.001m;
+                                valueToX += 0.001m;
                                 //e go!
                             }
 
