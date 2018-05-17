@@ -19,9 +19,9 @@ namespace _3dprinter_gcode
                 listOfInstructions.Add("Your Y Value:");
                 listOfInstructions.Add("Your Z Value:");
                 listOfInstructions.Add("Your G Value:");
+                var instructions = listOfInstructions[0].Split(' ').ToList();
 
-                //var instructions = listOfInstructions[4].Split("",).ToList();
-                foreach(var command in listOfInstructions)
+                foreach (var command in listOfInstructions)
                 {
                     Console.WriteLine(command);
                     listOfValues.Add(decimal.Parse(Console.ReadLine()));
@@ -33,10 +33,10 @@ namespace _3dprinter_gcode
                 decimal valueG = listOfValues[3];
 
 
-                decimal extrudeStepsMm = 850 / 100;
+                //decimal extrudeStepsMm = 850 / 100;
                 decimal valueToX = 0;
 
-                if (g == 1)
+                if (valueG == 1)
                 {
 
                     for (decimal valueToZ = 0; valueToZ < valueZ; valueToZ += 0.005m)
@@ -55,4 +55,5 @@ namespace _3dprinter_gcode
 
             }
         }
+    }
 }
